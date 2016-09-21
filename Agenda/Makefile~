@@ -1,0 +1,29 @@
+kk := -I ./include/
+cc := g++-4.8 -std=c++11
+bin/Agenda: build/Agenda.o build/User.o build/Date.o build/Storage.o build/AgendaService.o build/AgendaUI.o build/Meeting.o 
+	$(cc) $(kk) -o  $^  ./bin/Agenda
+
+build/Agenda.o: src/Agenda.cpp 
+	$(cc) $(kk) -c ./src/Agenda.cpp -o ./build/Agenda.o
+
+build/AgendaService.o: src/AgendaService.cpp ./include/AgendaService.hpp
+	$(cc) $(kk) -c ./src/AgendaService.cpp -o ./build/AgendaService.o
+
+build/AgendaUI.o: src/AgendaUI.cpp ./include/AgendaUI.hpp
+	$(cc) $(kk) -c ./src/AgendaUI.cpp -o ./build/AgendaUI.o
+
+build/User.o: src/User.cpp ./include/User.hpp
+	$(cc) $(kk) -c ./src/User.cpp -o ./build/User.o
+
+build/Meeting.o: src/Meeting.cpp ./include/Meeting.hpp
+	$(cc) $(kk) -c ./src/Meeting.cpp -o ./build/Meeting.o
+
+build/Date.o: src/Date.cpp ./include/Date.hpp
+	$(cc) $(kk) -c ./src/Date.cpp -o ./build/Date.o
+
+build/Storage.o: src/Storage.cpp ./include/Storage.hpp
+	$(cc) $(kk) -c ./src/Storage.cpp -o ./build/Storage.o
+
+clean:
+	@rm -f build/*.o
+	@rm -f bin/Agenda
